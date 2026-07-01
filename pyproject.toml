@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "wideframe"
+version = "0.1.0"
+description = "Open-source CLI video pre-editing tool — media analysis, semantic search, clip selection, sequence assembly"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+
+dependencies = [
+    "click>=8.1",
+    "ffmpeg-python>=0.2",
+    "sqlalchemy>=2.0",
+    "numpy>=1.26",
+    "pillow>=10.0",
+    "requests>=2.31",
+    "google-generativeai>=0.3",
+    "assemblyai>=0.31",
+    "faiss-cpu>=1.7",
+    "pydantic>=2.5",
+    "rich>=13.7",
+    "tqdm>=4.66",
+]
+
+[project.optional-dependencies]
+local = [
+    "openai>=1.0",          # Whisper via openai API
+    "clip-torch>=0.0.1",    # CLIP embeddings (local)
+]
+dev = [
+    "pytest>=7.4",
+    "pytest-asyncio>=0.21",
+    "ruff>=0.1",
+    "mypy>=1.8",
+]
+
+[project.scripts]
+wideframe = "wideframe.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+
+[tool.ruff]
+line-length = 120
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
